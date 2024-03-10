@@ -74,7 +74,7 @@ void printAmountDue(int amount) {
 }
 
 void printChanges(string reason, int changes[NUM_COIN_TYPES]) {
-    cout << "Purchase " << reason << ". Changes: $";
+    cout << reason << ". Changes: $";
 
     bool none = true;
     for (int i = 0; i < NUM_COIN_TYPES; i++) {
@@ -133,7 +133,16 @@ void deliverChanges(int coins[NUM_COIN_TYPES],
             coins[i]--;
             changes[i]++;
             remaining -= COIN_VALUES[i];
+            if (remaining <= 0) {
+                return;
+            }
         }
+    }
+}
+
+void clearChanges(int changes[NUM_COIN_TYPES]) {
+    for (int i = 0; i < NUM_COIN_TYPES; i++) {
+        changes[i] = 0;
     }
 }
 
@@ -173,6 +182,7 @@ int main() {
     string names[NUM_DRINK_TYPES] = { "Coke", "Coffee", "Tea", "Water" };
     int price[NUM_DRINK_TYPES] = { 400, 850, 600, 300 };
     int coins[NUM_COIN_TYPES] = { 10, 10, 10, 10, 10, 10 };
+    int changes[NUM_COIN_TYPES] = { 0, 0, 0, 0, 0, 0 };
 
     bool exit = false;
     while (!exit) {
@@ -200,16 +210,18 @@ int main() {
                 continue;
             }
 
-            int totalCoins = getTotalCoinsInStorage(coins);
+            coins[coinType] += 1;
+            amountDue -= COIN_VALUES[coinType];
             
-            if (totalCoins < MAX_COINS - 1) {
-                coins[coinType] += 1;
-                amountDue -= COIN_VALUES[coinType];
+            if (isCoinStorageFull(coins) && amountDue > 0) {
+                // refund last inserted coin
+                amountDue += COIN_VALUES[coinType];
+                deliverChanges(coins, COIN_VALUES[coinType], changes);
+                printChanges("Coin storage full", changes);
+                clearChanges(changes);
             }
         }
 
-        int changes[NUM_COIN_TYPES] = { 0, 0, 0, 0, 0, 0 };
-        string reason = cancelled ? "cancelled" : "completed";
         if (cancelled) {
             deliverChanges(coins, price[drinkType] - amountDue, changes);
         } else {
@@ -219,7 +231,8 @@ int main() {
             }
         }
 
-        printChanges(reason, changes);
+        printChanges(cancelled ? "Purchase cancelled" : "Purchase completed", changes);
+        clearChanges(changes);
    }
 
     return 0;
