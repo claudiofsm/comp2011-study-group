@@ -51,7 +51,7 @@ int getDrinkType(string names[NUM_DRINK_TYPES],
 
         cout << "Please enter a number to select the drink: ";
         int choice = getChoice();
-        if (choice <= 0 || choice > NUM_DRINK_TYPES) {
+        if (choice <= 0 || choice > NUM_DRINK_TYPES || quantity[choice - 1] <= 0) {
             printInvalidInput();
         } else {
             type = choice - 1;
