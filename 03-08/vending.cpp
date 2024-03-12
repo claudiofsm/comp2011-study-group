@@ -11,6 +11,12 @@ void printInvalidInput() {
     cerr << "Invalid input. Please enter again." << endl;
 }
 
+/**
+ * Returns the non-negative integer input user has entered, or -1 if the
+ * user input other strings.
+ * 
+ * @return  a non-negative integer choice, or -1 otherwise
+ */
 int getChoice() {
     string input = "";
     cin >> input;
@@ -28,6 +34,13 @@ int getChoice() {
     return stoi(input);
 }
 
+/**
+ * Prints the current stock level.
+ * 
+ * @param names  the display name of the drinks
+ * @param quantity  the amount left for each type of drinks
+ * @param price  the price for each type of drinks 
+ */
 void printStock(string names[NUM_DRINK_TYPES], 
                 int quantity[NUM_DRINK_TYPES], 
                 int price[NUM_DRINK_TYPES]) {
@@ -41,6 +54,14 @@ void printStock(string names[NUM_DRINK_TYPES],
     }
 }
 
+/**
+ * Returns the type of drink the user has entered.
+ * 
+ * @param names  the display name of the drinks
+ * @param quantity  the amount left for each type of drinks
+ * @param price  the price for each type of drinks 
+ * @return zero-based type, or -1 if user has requested to cancel.
+ */
 int getDrinkType(string names[NUM_DRINK_TYPES], 
                  int quantity[NUM_DRINK_TYPES], 
                  int price[NUM_DRINK_TYPES]) {
@@ -61,6 +82,11 @@ int getDrinkType(string names[NUM_DRINK_TYPES],
     return type;
 }
 
+/**
+ * Displays the amount due during a purchase. 
+ * 
+ * @param amount  the amount due in cents. 
+ */
 void printAmountDue(int amount) {
     cout << "$" << amount / 100 << "." << (amount % 100) / 10 << " remaining. Accepting coins:" << endl;
     cout 
@@ -73,6 +99,13 @@ void printAmountDue(int amount) {
         << "[0] Cancel" << endl;
 }
 
+/**
+ * Displays the coin changes.
+ * 
+ * @param reason  the reason to deliver the changes
+ * @param changes an array containing the number of coins corresponding to each coin type
+ *                composing the overall changes.
+ */
 void printChanges(string reason, int changes[NUM_COIN_TYPES]) {
     cout << reason << ". Changes: $";
 
@@ -106,6 +139,12 @@ void printChanges(string reason, int changes[NUM_COIN_TYPES]) {
     cout << endl;
 }
 
+/**
+ * Returns the type of the coin inserted.
+ * 
+ * @param due  the amount due during the purchase
+ * @return     zero-based type of the inserted coin, or -1 if the input is invalid
+ */
 int getCoinTypeInserted(int due) {
     int type = -2;
 
@@ -124,6 +163,14 @@ int getCoinTypeInserted(int due) {
     return type;
 }
 
+/**
+ * Delivers changes to the user.
+ * 
+ * @param coins  the new number of different type of coins remaining in the coin storage
+ * @param amount the amount of changes in cents
+ * @param changes an array containing the number of coins corresponding to each coin type
+ *                composing the overall changes.
+ */
 void deliverChanges(int coins[NUM_COIN_TYPES], 
                     int amount,
                     int changes[NUM_COIN_TYPES]) {
@@ -140,12 +187,21 @@ void deliverChanges(int coins[NUM_COIN_TYPES],
     }
 }
 
+/**
+ * Resets the number of different types of coins in the changes to zero.
+ */
 void clearChanges(int changes[NUM_COIN_TYPES]) {
     for (int i = 0; i < NUM_COIN_TYPES; i++) {
         changes[i] = 0;
     }
 }
 
+/**
+ * Returns the number of coins in the storage.
+ * 
+ * @param coins  the number of different types of coins
+ * @return   the total number of conis
+ */
 int getTotalCoinsInStorage(int coins[NUM_COIN_TYPES]) {
     int total = 0;
     for (int i = 0; i < NUM_COIN_TYPES; i++) {
@@ -154,10 +210,23 @@ int getTotalCoinsInStorage(int coins[NUM_COIN_TYPES]) {
     return total;
 }
 
+/**
+ * Determines whether the coin storage is full.
+ *
+ * @param coins  the number of different types of coins
+ * @return   true if full, false otherwise
+*/
 bool isCoinStorageFull(int coins[NUM_COIN_TYPES]) {
     return getTotalCoinsInStorage(coins) >= MAX_COINS;
 }
 
+/**
+ * Determines whether the number of different types of coins in the storage
+ * is low, i.e. may not be able to deliver changes for some amount.
+ *
+ * @param coins  the number of different types of coins
+ * @return   true if storage is low, false otherwise
+*/
 bool isCoinStorageLow(int coins[NUM_COIN_TYPES]) {
     // This is a safe set of coins which can deliver changes
     // for any amount under $5.
@@ -169,6 +238,7 @@ bool isCoinStorageLow(int coins[NUM_COIN_TYPES]) {
         || coins[5] < 1;    // $0.1
 }
 
+/*
 void printCoinStorage(int coins[NUM_COIN_TYPES]) {
     cout << "coins: {";
     for (int i = 0; i < NUM_COIN_TYPES; i++) {
@@ -176,6 +246,7 @@ void printCoinStorage(int coins[NUM_COIN_TYPES]) {
     }
     cout << "}" << endl;
 }
+*/
 
 int main() {
     int stock[NUM_DRINK_TYPES] = { 20, 20, 20, 20 };
@@ -197,7 +268,7 @@ int main() {
             continue;
         }
 
-        printCoinStorage(coins);
+        // printCoinStorage(coins);
 
         int drinkType = getDrinkType(names, stock, price);
         int amountDue = price[drinkType];
