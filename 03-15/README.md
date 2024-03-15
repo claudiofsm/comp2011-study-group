@@ -1,7 +1,7 @@
 # Bubble Sort
 
 Bubble sort is an easy and simple sorting algorithm every computer science
-graduate must learn. We are going to write a function that perform bubble sort
+student must learn. We are going to write a function that performs bubble sort
 on a given array of integers.
 
 ## Algorithm
@@ -22,18 +22,24 @@ Suppose we have an array of integers `[ 6, 3, 0, 5 ]`.
 1. Compare `6` and `3`. Do a swap. Array becomes `[ 3, 6, 0, 5 ]`.
 1. Compare `6` and `0`. Do a swap. Array becomes `[ 3, 0, 6, 5 ]`.
 1. Compare `6` and `5`. Do a swap. Array becomes `[ 3, 0, 5, 6 ]`.
+1. Now the `3-th` element is sorted correctly, and can be ignored in subsequent
+passes.
 
 ### Second Pass
 
 1. Compare `3` and `0`. Do a swap. Array becomes `[ 0, 3, 5, 6 ]`.
 1. Compare `3` and `5`. Do not swap. Array becomes `[ 0, 3, 5, 6 ]`.
+1. Now the `2-th` element is sorted correctly, and can be ignored in subsequent
+passes.
 
 ### Third Pass
 
-1. Compare `0` and `3`. Do not swap. Array becomes `[ 0, 3, 5, 6 ]`. We are 
-done!
+1. Compare `0` and `3`. Do not swap. Array becomes `[ 0, 3, 5, 6 ]`. 
+1. Now both the `0-th` and `1-th` element are sorted correctly. We are done!
 
-It can be seen that we sort the array in `4 - 1 = 3` passes.
+It can be seen that we sort the array in `4 - 1 = 3` passes. Notice that each
+pass results in one more element near the end of the arrary being sorted and
+can be ignored in subsequent passes.
 
 ## Programming Exercises
 
