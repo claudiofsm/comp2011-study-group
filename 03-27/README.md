@@ -6,13 +6,25 @@ of cards. It can be summarized as follows:
 - Shuffle the remaining sequence of elements
 - Place the randomly selected element at the front
 
-Write a recursive function to shuffle the characters of a given string,
-with the function declaration string randomShuffle(string input).
+Write a recursive function to shuffle the characters of a given string:
 
-# String Subsequence
+```c++
+string randomShuffle(string input);
+```
 
-Write a recursive function named ​isSubsequence​ ​that takes two strings 
+# String Subsequences
+
+Write a recursive function named `​isSubsequence`​ ​that takes two strings 
 and returns true if the second string is a subsequence of the first 
 string. A string is a subsequence of another if it contains the same 
 letters in the same order, but not necessarily consecutively. You can
 assume both strings are already lower-cased.
+
+For example:
+- isSubsequence("computer", "core") returns `false`
+- isSubsequence("computer", "cope") returns `true`
+- isSubsequence("computer", "computer") returns `true`
+
+```c++
+bool isSubsequence(string first, string second);
+```
