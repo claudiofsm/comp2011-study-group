@@ -12,23 +12,26 @@ struct Node {
 };
 ```
 
-## Remove Duplicates
+## 1. Remove Duplicates
 
 Write a ```remove_duplicates()``` function which takes a list sorted in 
 increasing order and deletes any duplicate nodes from the list. Ideally, the 
 list should only be traversed once.
 
+For example, if the original list is ```{1, 2, 2, 3, 4, 4, 5}```, after calling
+this function, the resulting list becomes ```{1, 2, 3, 4, 5}```.
+
 ```c++
 void remove_duplicates(Node*& list);
 ```
 
-## Alternating Split
+## 2. Alternating Split
 
 Write a function ```alternating_split()``` that takes one list and divides up 
 its nodes to make two smaller lists. The sublists should be made from 
 alternating elements in the original list. So if the original list is 
-```{a, b, a, b, a}```, then one sublist should be ```{a, a, a}``` and the
-other should be ```{b, b}```. The elements in the new lists may be in any order 
+```{1, 2, 1, 2, 1}```, then one sublist should be ```{1, 1, 1}``` and the
+other should be ```{2, 2}```. The elements in the new lists may be in any order 
 (for some implementations, it turns out to be convenient if they are in the 
 reverse order from the original list.)
 
@@ -46,11 +49,14 @@ reverse order from the original list.)
 void alternating_split(Node* list, Node*& first, Node*& second);
 ```
 
-## Reverse
+## 3. Reverse
 
 Write an iterative ```reverse()``` function that reverses a list by rearranging 
 all the ```next``` pointers and the head pointer. Ideally, ```reverse()``` 
 should only need to make one pass of the list. 
+
+For example, if the original list is ```{1, 2, 3, 4, 5}```, after calling this
+function, the list becomes ```{5, 4, 3, 2, 1}```.
 
 ```c++
 /**
