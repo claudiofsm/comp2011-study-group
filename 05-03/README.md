@@ -15,7 +15,7 @@ struct Node {
 ## Tasks
 
 You have to implement the ```removeDuplicates()``` and ```reverse()``` functions
-in ```list.cpp```.
+in [list.cpp](list.cpp).
 
 ### Task 1: Remove Duplicates
 
@@ -61,7 +61,7 @@ void reverse(Node*& list) {
 
 ## Compilation
 
-In your terminal program, go to the directory containing the ```main.cpp```
+In your terminal program, go to the directory containing the [main.cpp](main.cpp)
 file, and type the following:
 
 ```
@@ -76,7 +76,7 @@ Then, you may run the program as follows:
 
 ## Output
 
-Before you implement anything in ```list.cpp```, you will see the following
+Before you implement anything in [list.cpp](list.cpp), you will see the following
 output:
 
 ```
