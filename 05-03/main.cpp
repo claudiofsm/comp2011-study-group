@@ -8,6 +8,6 @@ using namespace std;
 int main() {
     runRemoveDuplicatesTests();
     runReverseTests();
-    cout << "All testcases completed.";
+    cout << "All testcases completed." << endl;
     return 0;
 }

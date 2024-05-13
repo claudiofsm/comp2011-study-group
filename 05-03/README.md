@@ -120,3 +120,7 @@ Test multiple element list: Passed
 
 All testcases completed.
 ```
+
+## Solution
+
+Check [list_solution.cpp](list_solution.cpp).
